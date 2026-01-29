@@ -8,22 +8,27 @@ package lab.oop.pkg01;
  *
  * @author ADMIN
  */
-public class Vehicle {
-    private int fuel;
-    private String topSpeed;
-    protected void setFuel(int i){
-        this.fuel = i;
+public abstract class Vehicle implements Dieselable {
+    protected double fuel;
+
+    public Vehicle() {
+        this(0.0);
     }
-    protected void setTopSpeed(String n){
-        this.topSpeed = n;
+
+    public Vehicle(double fuel) {
+        this.fuel = fuel;
     }
-    protected int getFuel(){
-        return fuel;
+
+    public void addFuel(double fuel) {
+        if (fuel > 0) {
+            this.fuel += fuel;
+        } else {
+            System.out.println("Fuel is empty.");
+        }
     }
-    protected String getTopSpeed(){
-        return topSpeed;
-    }
-    public void showInfo(){
-        System.out.println("Fuel is " + fuel + " 1itre and Top Speed is " + topSpeed + "m/s.");    
-    }
+
+    public abstract void honk();
+
+    public double getFuel() { return fuel; }
+    public void setFuel(double fuel) { this.fuel = fuel; }
 }
