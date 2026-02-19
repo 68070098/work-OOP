@@ -22,11 +22,12 @@ public class TellerGUI extends Account implements ActionListener{
     public TellerGUI() {
         super(6000.0, "wachi_164");
         
-        //creat JFrame
+
+        
         fr = new JFrame("Teller GUI");
         fr.setLayout(new GridLayout(4, 1));
+
         
-        //Balance
         p1 = new JPanel(new GridLayout(1, 2));
         balance = new JLabel("   Balance");
         showBalance = new JTextField(String.valueOf((int) getBalance()));
@@ -34,8 +35,8 @@ public class TellerGUI extends Account implements ActionListener{
         fr.add(p1);
         p1.add(balance);
         p1.add(showBalance);
+
         
-        //Amount
         p2 = new JPanel(new GridLayout(1, 2));
         amount = new JLabel("   Amount");
         putAmount = new JTextField();
@@ -43,7 +44,8 @@ public class TellerGUI extends Account implements ActionListener{
         p2.add(amount);
         p2.add(putAmount);
         
-        //Buttton
+
+        
         p3 = new JPanel(new FlowLayout());
         btn1 = new JButton("Deposit");
         btn2 = new JButton("Withdraw");
@@ -53,12 +55,14 @@ public class TellerGUI extends Account implements ActionListener{
         p3.add(btn2);
         p3.add(btn3);
         
-        //add listerner
+
+        
         btn1.addActionListener(this);
         btn2.addActionListener(this);
         btn3.addActionListener(this);
         
-        //set JFrame Property
+
+        
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setSize(300, 200);
         fr.setVisible(true);
