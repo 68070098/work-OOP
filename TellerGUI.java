@@ -8,51 +8,72 @@ package lab.oop.pkg01;
  *
  * @author ADMIN
  */
-import java.awt.*;
 import javax.swing.*;
-public class TellerGUI {
+import java.awt.*;
+import java.awt.event.*;
+
+public class TellerGUI extends Account implements ActionListener{
     private JFrame fr;
-    private JPanel pn1;
-    private JPanel pn2;
-    private JLabel labelBalance;
-    private JLabel labelAmount;
-    private JTextField tfBalance;
-    private JTextField tfAmount;
-    private JButton bDeposit;
-    private JButton bWithdraw;
-    private JButton bExit;
+    private JPanel p1, p2, p3, p4;
+    private JLabel balance, amount;
+    private JTextField showBalance, putAmount;
+    private JButton btn1, btn2, btn3;
     
-    public TellerGUI(){
+    public TellerGUI() {
+        super(6000.0, "wachi_164");
+        
+        //creat JFrame
         fr = new JFrame("Teller GUI");
-        pn1 = new JPanel();
-        pn2 = new JPanel();
-        labelBalance = new JLabel(" Balance");
-        labelAmount = new JLabel(" Amount");
-        tfBalance = new JTextField("6000");
-        tfBalance.setEditable(false);
-        tfAmount = new JTextField();
-        bDeposit = new JButton("Deposit");
-        bWithdraw = new JButton("Withdraw");
-        bExit = new JButton("Exit");
+        fr.setLayout(new GridLayout(4, 1));
         
-        pn1.setLayout(new GridLayout(2, 2));
-        pn1.add(labelBalance);
-        pn1.add(tfBalance);
-        pn1.add(labelAmount);
-        pn1.add(tfAmount);
+        //Balance
+        p1 = new JPanel(new GridLayout(1, 2));
+        balance = new JLabel("   Balance");
+        showBalance = new JTextField(String.valueOf((int) getBalance()));
+        showBalance.setEditable(false);
+        fr.add(p1);
+        p1.add(balance);
+        p1.add(showBalance);
         
-        pn2.setLayout(new FlowLayout());
-        pn2.add(bDeposit);
-        pn2.add(bWithdraw);
-        pn2.add(bExit);
+        //Amount
+        p2 = new JPanel(new GridLayout(1, 2));
+        amount = new JLabel("   Amount");
+        putAmount = new JTextField();
+        fr.add(p2);
+        p2.add(amount);
+        p2.add(putAmount);
         
+        //Buttton
+        p3 = new JPanel(new FlowLayout());
+        btn1 = new JButton("Deposit");
+        btn2 = new JButton("Withdraw");
+        btn3 = new JButton("Exit");
+        fr.add(p3);
+        p3.add(btn1);
+        p3.add(btn2);
+        p3.add(btn3);
         
-        fr.setLayout(new GridLayout(2, 1));
-        fr.add(pn1);
-        fr.add(pn2);
+        //add listerner
+        btn1.addActionListener(this);
+        btn2.addActionListener(this);
+        btn3.addActionListener(this);
         
+        //set JFrame Property
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setSize(300, 200);
         fr.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(btn1)) {
+            this.deposit(Double.parseDouble(putAmount.getText()));
+            showBalance.setText(String.valueOf(this.getBalance()));
+        } else if (e.getSource().equals(btn2)) {
+            this.withdraw(Double.parseDouble(putAmount.getText()));
+            showBalance.setText(String.valueOf(this.getBalance()));
+        } else if (e.getSource().equals(btn3)) {
+            System.exit(JFrame.EXIT_ON_CLOSE);
+        }
     }
 }
