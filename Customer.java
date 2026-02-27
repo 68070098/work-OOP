@@ -61,11 +61,11 @@ public class Customer {
 //    private String lastName;
 //    private ArrayList<Account> acct;
 //
-//    public Customer2() {
+//    public Customer() {
 //        acct = new ArrayList<>();
 //    }
 //
-//    public Customer2(String firstName, String lastName) {
+//    public Customer(String firstName, String lastName) {
 //        this.firstName = firstName;
 //        this.lastName = lastName;
 //        acct = new ArrayList<>();
